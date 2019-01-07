@@ -6,19 +6,20 @@ $(function () {
     };
     var stopInterval = $('#stop');
     var startInterval = $('#start');
-    var interval;
+    var container = $('#container');
 
-    interval = setInterval(function () {
-        $('#container').append($('<div class="element">').html(rad(0, 20)));
+    var interval = setInterval(function () {
+        container.append($('<div class="element">').text(rad(0, 20)));
     }, 5000);
 
-    stopInterval.on('click', function () {
+    stopInterval.on('click', function (e) {
+        e.preventDefault();
         clearInterval(interval);
     });
 
-    startInterval.on('click', function () {
-        interval = setInterval(function () {
-            $('#container').append($('<div class="element">').html(rad(0, 20)));
-        }, 5000);
+    startInterval.on('click', function (e) {
+        e.preventDefault();
+        setInterval(interval);
     });
+    setInterval(interval);
 });
